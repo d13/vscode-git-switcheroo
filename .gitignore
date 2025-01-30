@@ -1,0 +1,6 @@
+dist
+out
+node_modules
+*.vsix
+tsconfig*.tsbuildinfo
+.DS_Store

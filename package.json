@@ -1,0 +1,62 @@
+{
+  "name": "git-switcheroo",
+  "displayName": "Git Switcheroo",
+  "description": "A VS Code extension that creates a replacement for VS Code's Source Control Checkout status bar item.",
+  "version": "0.0.1",
+  "publisher": "d13",
+  "author": {
+    "name": "Keith Daulton",
+    "email": "kdaulton@d13design.com"
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "engines": {
+    "node": ">22.0.0",
+    "vscode": "^1.93.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/d13/vscode-git-switcheroo.git"
+  },
+  "main": "./out/extension.js",
+  "extensionDependencies": [
+    "vscode.git",
+    "eamodio.gitlens"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "gitSwitcheroo.switchBranch",
+        "title": "Switch Branch"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "gitSwitcheroo.switchBranch",
+          "when": "false"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "build": "tsc -p ./ --outDir out",
+    "package": "vsce package --no-dependencies",
+    "package:pre": "npm run package --pre-release",
+    "pub": "vsce publish --no-dependencies",
+    "watch": "tsc -p ./ -watch --extendedDiagnostics",
+    "vscode:prepublish": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "20.x",
+    "@vscode/vsce": "^3.2.2",
+    "@types/vscode": "^1.93.0",
+    "@typescript-eslint/eslint-plugin": "^8.17.0",
+    "@typescript-eslint/parser": "^8.17.0",
+    "eslint": "^9.16.0",
+    "typescript": "^5.5.4"
+  },
+  "dependencies": {}
+}
