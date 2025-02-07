@@ -1,29 +1,20 @@
-# Custom Source Control Extension
+# Git Switcheroo extension for VS Code
 
-This extension creates a replacement for VS Code's Source Control Checkout status bar item. It allows you to switch branches by calling the `gitlens.gitCommands.switch` command from the `eamodio.gitlens` extension.
+> **WARNING**: This is purely a testbed for trying out ideas for VS Code Extensions and should be considered experimental.
+
+This extension creates a replacement for VS Code's Source Control Checkout status bar item. If you use the [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens) extension, it will use GitLens to switch branches, giving you better support for Git Worktrees.
 
 ## Features
 
 - Custom status bar item that displays the current branch
-- Switch branches using the `gitlens.gitCommands.switch` command
+- Hover with more information about the repo and branch
+- Switch branches by clicking on the status bar item
 
 ## Installation
 
-1. Install the [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens) extension.
+1. Install the [GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens) extension. (optional)
 2. Clone this repository.
 3. Open the repository in Visual Studio Code.
 4. Run `npm install` to install the dependencies.
-5. Press `F5` to open a new VS Code window with the extension loaded.
-
-## Usage
-
-1. The custom status bar item will display the current branch.
-2. Click on the status bar item to switch branches using the `gitlens.gitCommands.switch` command.
-
-## Contributing
-
-If you have any suggestions or improvements, feel free to create an issue or submit a pull request.
-
-## License
-
-This project is licensed under the MIT License.
+5. Run `npm run package` to create the extension's VSIX file.
+6. Install by opening the Extensions side bar and selecting "Install from VSIX" from the side bar' overflow menu..

@@ -17,6 +17,8 @@
     "type": "git",
     "url": "https://github.com/d13/vscode-git-switcheroo.git"
   },
+  "icon": "images/git-switcheroo-icon.png",
+  "preview": true,
   "main": "./out/extension.js",
   "extensionDependencies": [
     "vscode.git",
