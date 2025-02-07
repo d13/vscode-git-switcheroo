@@ -28,7 +28,12 @@ export interface RepositoryOpenCloseEvent {
 export class ScmProvider implements Disposable {
   private _disposables: Disposable[] = [];
 
-  private _onInitialized = new EventEmitter<APIState>();
+  private _initialized = false;
+  get initialized() {
+    return this._initialized;
+  }
+
+  private _onInitialized = new EventEmitter<void>();
   get onInitialized() {
     return this._onInitialized.event;
   }
@@ -51,12 +56,21 @@ export class ScmProvider implements Disposable {
       throw new Error("Git extension not available");
     }
 
+    this._initialized = api.state === "initialized";
+    if (this._initialized) {
+      this._onInitialized.fire();
+    } else {
+      this._disposables.push(
+        api.onDidChangeState((e) => {
+          if (e === "initialized") {
+            this._initialized = true;
+            this._onInitialized.fire();
+          }
+        })
+      );
+    }
+
     this._disposables.push(
-      api.onDidChangeState((e) => {
-        if (e === "initialized") {
-          this._onInitialized.fire(e);
-        }
-      }),
       api.onDidCloseRepository((e) =>
         this._onDidCloseRepository.fire({ repository: e })
       ),
