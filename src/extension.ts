@@ -3,11 +3,7 @@ import { Container } from "./container";
 
 let container: Container;
 export function activate(context: ExtensionContext) {
-  container = new Container(context);
-
-  container.statusBarItem.updateStatus();
-
-  context.subscriptions.push(...container.statusBarItem.registerCommands());
+  context.subscriptions.push((container = new Container(context)));
 
   // workspace.onDidChangeConfiguration((event) => {
   //   if (event.affectsConfiguration("gitlens")) {
@@ -19,6 +15,6 @@ export function activate(context: ExtensionContext) {
   // window.onDidChangeActiveTextEditor(updateStatusBarItem);
 }
 
-export function deactivate() {
-  container?.dispose();
-}
+// export function deactivate() {
+//   container?.dispose();
+// }
